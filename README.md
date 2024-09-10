@@ -1,3 +1,27 @@
+# Social Network Project
+
+The app is built with authorization handled through Lucia and media stored via Cloudinary.
+
+## Features
+
+- **Posting**: Users can upload image posts to share with others.
+- **Profile Editing**: Users can edit their account information.
+- **Authorization**: User authentication and authorization powered by Lucia.
+  
+## Tech Stack
+
+- **Lucia**: For handling authorization and authentication.
+- **Tailwind CSS**: For styling the application with modern, utility-first CSS.
+- **Mongoose**: For modeling and interacting with the MongoDB database.
+- **Cloudinary**: Used for storing and managing user-uploaded media.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
