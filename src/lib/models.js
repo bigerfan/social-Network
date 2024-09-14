@@ -39,7 +39,11 @@ const postSchema = new Schema({
         type:String,
         required:true
     },
-    postImg:{
+    media:{
+        type:String,
+        required:true
+    },
+    mediaType:{
         type:String,
         required:true
     }

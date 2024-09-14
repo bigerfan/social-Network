@@ -30,6 +30,25 @@ export async function uploadImage(image) {
   return result.secure_url;
 }
 
+export async function uploadVideo(video) {
+  const videoData = await video.arrayBuffer();
+  
+  const mime = video.type;
+  
+  const encoding = 'base64';
+  const base64Data = Buffer.from(videoData).toString('base64');
+  
+  const fileUri = 'data:' + mime + ';' + encoding + ',' + base64Data;
+  
+  const result = await cloudinary.uploader.upload(fileUri, {
+    folder: 'nextjs-social-network',
+    resource_type: 'video',
+  });
+  
+  return result.secure_url;
+}
+
+
 export async function DeleteImage(imageUrl) {
   try {
     const urlParts = imageUrl.split('/');

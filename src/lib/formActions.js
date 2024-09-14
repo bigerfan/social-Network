@@ -102,7 +102,7 @@ export async function LoginValidate(prevState, formdata) {
 
 export async function CreatePost(prevState, formdata) {
     const errors = []
-    const image = formdata.get('image')
+    const media = formdata.get('media')
     const title = formdata.get('title')
 
     const userInfo = await validateAuthSession()
@@ -116,26 +116,40 @@ export async function CreatePost(prevState, formdata) {
         errors.push('the title must bigger than 3 char')
     }
 
-    if (!image || !image.type.startsWith('image/')) {
-        errors.push('you just can enter image')
+    if (!media || !media.type.startsWith('image/') && !media.type.startsWith('video/')) {
+        errors.push('media is required(video or picture)')
     }
 
     if (errors.length > 0) {
         return { errors }
     }
 
+    console.log(media);
+    
+
     try {
-        const imageUrl = await uploadImage(image)
+        let mediaUrl = ''
+        let mediaType = ''
+
+        if (media.type.startsWith('image/')) {
+            mediaUrl = await uploadImage(media)
+            mediaType = 'image'
+        }
+        else if(media.type.startsWith('video/')){
+            mediaUrl = await uploadVideo(media)
+            mediaType = 'video'
+        }
+        
         const userId = userInfo.id
 
         await connectToDB()
 
         const newPost = new Post({
             title: title,
-            postImg: imageUrl,
+            media: mediaUrl,
+            mediaType,
             creator: userId
         })
-
 
         const post = await newPost.save()
 

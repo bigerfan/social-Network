@@ -13,8 +13,8 @@ export const CreateForm = () => {
                 <textarea name="title" className='basicForm' placeholder="title" />
             </div>
             <div className='inputContainer w-9/12'>
-                <label htmlFor="image" className='text-[var(--text)]'>Add Your img</label>
-                <input type="file" name="image" className='basicForm text-[var(--text)]' accept="image/*" />
+                <label htmlFor="image" className='text-[var(--text)]'>Add Your media</label>
+                <input type="file" name="media" className='basicForm text-[var(--text)]' accept="image/*, video/*" />
             </div>
             <div className='inputContainer w-9/12'>
                 <button className="blueBtn">Create</button>
