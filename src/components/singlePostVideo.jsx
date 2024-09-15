@@ -1,6 +1,8 @@
+'use client'
+
 import React from 'react'
 import { Reactions } from './Reactions'
-import { useRef, useState } from 'react'
+import { useRef, useState , useEffect } from 'react'
 import { GoMute, GoUnmute } from "react-icons/go";
 import { IoPlay } from "react-icons/io5";
 
@@ -13,7 +15,7 @@ export const SinglePostVideo = ({ post }) => {
         const video = videoRef.current
         if (video) {
             video.muted = !video.muted
-            setIsMuted(!video.muted)
+            setIsMuted(prevState => !prevState)
         }
     }
 
@@ -29,15 +31,38 @@ export const SinglePostVideo = ({ post }) => {
         }
     }
 
+    const handleScroll = () => {
+        const video = videoRef.current
+        if (video) {
+            const rect = video.getBoundingClientRect()
+            const inViewport = rect.top >= 0 && rect.left >= 0 && rect.bottom <= window.innerHeight && rect.right <= window.innerWidth
+            if (!inViewport) {
+                video.pause()
+                setPlay(false)
+            }
+            else{
+                setPlay(true)
+                video.play()
+            }
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
 
     return (
         <>
             <p className="text-pretty font-sans md:text-2xl text-[var(--textsoft)]">{post.title}</p>
             <div className="w-[100%] bg-black">
-                <div className="relative max-w-full mx-auto bg-black shadow-lg overflow-hidden">
+                <div className="relative max-w-full mx-auto bg-black shadow-lg overflow-hidden max-h-[60vh]  md:max-h-[70vh] ">
                     <video
                         ref={videoRef}
-                        className="w-full"
+                        className="mx-auto "
                         autoPlay
                         controls={false}
                         preload="auto"
