@@ -4,22 +4,43 @@ The app is built with authorization handled through Lucia and media stored via C
 
 ## Features
 
-- **Posting**: Users can upload image posts to share with others.
-- **Profile Editing**: Users can edit their account information.
+- **social network featurs**: like posting,like, account editting
 - **Authorization**: User authentication and authorization powered by Lucia.
   
 ## Tech Stack
 
-- **Lucia**: For handling authorization and authentication.
-- **Tailwind CSS**: For styling the application with modern, utility-first CSS.
-- **Mongoose**: For modeling and interacting with the MongoDB database.
-- **Cloudinary**: Used for storing and managing user-uploaded media.
+- **Lucia**:
+- **Tailwind CSS**
+- **Mongoose**
+- **Cloudinary**
+
+## Prerequisites
+
+Before you start, ensure you have the following installed and set up:
+
+1. **MongoDB**:
+   - You need to have access to a MongoDB database (e.g., MongoDB Atlas).
+   - [MongoDB Installation Guide](https://docs.mongodb.com/manual/installation/)
+
+2. **Cloudinary**:
+   - Create an account on [Cloudinary](https://cloudinary.com/).
+   - Set up your Cloudinary credentials (Cloud name, API Key, and API Secret).
+   - These credentials will be used to store and manage media uploads.
+
+
+### Environment Variables
+You'll need to configure the following environment variables in your `.env` file:
+
+MONGODB_URI=mongodb://localhost:27017/your-db
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
 
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/bigerfan/social-Network
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
