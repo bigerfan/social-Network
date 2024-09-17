@@ -1,5 +1,6 @@
 import { PostCreator } from "@/components/PostCreator"
 import { SinglePost } from "@/components/SinglePost"
+import { SinglePostVideo } from "@/components/singlePostVideo"
 import { Post, User } from "@/lib/models"
 
 const UserSinglePost =async ({ params }) => {
@@ -13,7 +14,7 @@ const UserSinglePost =async ({ params }) => {
     <div className='flex justify-center'>
       <div className="flex flex-col gap-3 border-b-2 px-2 py-2 pb-6 w-[80%] md:w-[60%] rounded-sm border-[var(--bgsoft)]">
         <PostCreator user={user} />
-        <SinglePost post={post} />
+        {post.mediaType == 'image' ? <SinglePost post={post} /> : <SinglePostVideo post={post}/>}
       </div>
     </div>
   )

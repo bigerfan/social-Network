@@ -10,6 +10,7 @@ export const SinglePostVideo = ({ post }) => {
     const videoRef = useRef(null)
     const [isMuted, setIsMuted] = useState(true)
     const [isPlaying,setPlay ] = useState(true)
+    const [click , setClick] = useState(true)
 
     const toggleMute = () => {
         const video = videoRef.current
@@ -27,6 +28,7 @@ export const SinglePostVideo = ({ post }) => {
             } else {
                 video.pause()
             }
+            setClick(prev => !prev)
             setPlay(play => !play)
         }
     }
@@ -40,7 +42,7 @@ export const SinglePostVideo = ({ post }) => {
                 video.pause()
                 setPlay(false)
             }
-            else{
+            else if(click){
                 setPlay(true)
                 video.play()
             }
@@ -52,7 +54,7 @@ export const SinglePostVideo = ({ post }) => {
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [])
+    }, [click])
 
 
     return (
